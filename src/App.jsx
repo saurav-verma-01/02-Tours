@@ -28,6 +28,10 @@ const App = () => {
     }
   };
 
+  const refetchAll = () => {
+    fetchToursData();
+  };
+
   const handleRemoveTour = (id) => {
     // console.log(id);
     const newTours = toursData.filter((tour) => tour.id !== id);
@@ -39,6 +43,10 @@ const App = () => {
       <h2 className="heading">Our Tours</h2>
       {isLoading ? (
         <Loading />
+      ) : toursData.length === 0 ? (
+        <button className="btn" onClick={refetchAll}>
+          Refetch
+        </button>
       ) : (
         <Tours toursData={toursData} onRemove={handleRemoveTour} />
       )}
